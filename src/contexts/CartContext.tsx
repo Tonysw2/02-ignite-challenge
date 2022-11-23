@@ -2,15 +2,8 @@ import { createContext, ReactNode, useReducer } from 'react'
 import { CoffeeOrder } from '../Pages/Home/CoffeeList/CoffeeItem'
 import { ActionTypes } from '../reducers/actions'
 
-interface Cart {
-  id: string
-  type: string
-  price: string
-  amount: number
-}
-
 interface CartContextType {
-  cart: Cart[]
+  cart: CoffeeOrder[]
   addCoffeeToCart: (coffeeOrder: CoffeeOrder) => void
 }
 
@@ -20,7 +13,7 @@ interface CartContextProviderProps {
 
 export const CartContext = createContext({} as CartContextType)
 
-function CartReducer(state: Cart[], action: any) {
+function CartReducer(state: CoffeeOrder[], action: any) {
   switch (action.type) {
     case ActionTypes.ADD_COFFEE_TO_CART: {
       return [...state, action.payload]

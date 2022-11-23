@@ -15,8 +15,9 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <img src={Logo} alt="" />
-
+      <Link to={'/'}>
+        <img src={Logo} alt="" />
+      </Link>
       <ActionContainer>
         <Location>
           <span>

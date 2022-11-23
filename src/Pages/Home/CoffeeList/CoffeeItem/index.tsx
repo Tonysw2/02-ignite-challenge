@@ -1,9 +1,7 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import { ShoppingCart } from 'phosphor-react'
-import { useContext } from 'react'
-import { useForm } from 'react-hook-form'
+import { FormEvent, useContext, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import * as zod from 'zod'
+import { InputAmount } from '../../../../components/InputAmount'
 import { CartContext } from '../../../../contexts/CartContext'
 import { BuyContainer, CoffeeTags, ListItem } from './styles'
 
@@ -12,6 +10,7 @@ export interface CoffeeOrder {
   amount: number
   type: string
   price: number
+  name: string
 }
 
 interface CoffeeDetails {
@@ -27,34 +26,34 @@ interface CoffeeItemProps {
   coffeeDetails: CoffeeDetails
 }
 
-interface CoffeeData {
-  coffeeAmount: number
-}
-
-const CoffeeOrderValidationSchema = zod.object({
-  coffeeAmount: zod.number().min(0),
-})
-
 export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: { coffeeAmount: 0 },
-    resolver: zodResolver(CoffeeOrderValidationSchema),
-  })
+  const [amountInput, setAmountInput] = useState(0)
   const { addCoffeeToCart } = useContext(CartContext)
 
-  function handleAddCoffeeToCart(data: CoffeeData) {
-    console.log(data)
+  function increaseAmountInput() {
+    setAmountInput((prev) => prev + 1)
+  }
 
-    if (data.coffeeAmount === 0) return
+  function decreaseAmountInput() {
+    setAmountInput((prev) => {
+      return prev === 0 ? 0 : prev - 1
+    })
+  }
+
+  function handleAddCoffeeToCart(event: FormEvent) {
+    event.preventDefault()
+
+    if (amountInput === 0) return
 
     const coffeeOrder = {
       id: coffeeDetails.id,
-      amount: data.coffeeAmount,
+      amount: amountInput,
       type: coffeeDetails.type,
       price: coffeeDetails.price,
+      name: coffeeDetails.name,
     }
     addCoffeeToCart(coffeeOrder)
-    reset()
+    setAmountInput(0)
   }
 
   return (
@@ -72,19 +71,18 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
         <span>{coffeeDetails.description}</span>
       </p>
 
-      <BuyContainer onSubmit={handleSubmit(handleAddCoffeeToCart)}>
+      <BuyContainer onSubmit={handleAddCoffeeToCart}>
         <p>
           R$ <span>{coffeeDetails.price}</span>
         </p>
 
         <div>
-          <input
-            id="coffeeAmount"
-            type="number"
-            placeholder="0"
-            min={0}
-            {...register('coffeeAmount', { valueAsNumber: true })}
+          <InputAmount
+            amount={amountInput}
+            onIncrease={increaseAmountInput}
+            onDecrease={decreaseAmountInput}
           />
+
           <button type="submit">
             <ShoppingCart size={22} weight={'fill'} />
           </button>

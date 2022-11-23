@@ -76,24 +76,6 @@ export const BuyContainer = styled.form`
     align-items: center;
     gap: 0.5rem;
 
-    & > input {
-      width: 4rem;
-      border: none;
-      border-radius: 6px;
-      background: ${(props) => props.theme.base_button};
-      color: ${(props) => props.theme.base_title};
-
-      padding: 0.5rem;
-
-      &:focus {
-        outline: 2px solid ${(props) => props.theme.purple_dark};
-      }
-
-      &::placeholder {
-        color: ${(props) => props.theme.base_label};
-      }
-    }
-
     & > button[type='submit'] {
       display: flex;
       align-items: center;
