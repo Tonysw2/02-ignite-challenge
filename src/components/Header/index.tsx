@@ -25,12 +25,19 @@ export function Header() {
           </span>
           Porto Alegre, RS
         </Location>
-        <Link to={'/Checkout'}>
+        {cart.length > 0 ? (
+          <Link to={'/Checkout'}>
+            <CartContainer>
+              <ShoppingCart size={22} weight={'fill'} />
+              {cart.length > 0 ? <span>{cart.length}</span> : ''}
+            </CartContainer>
+          </Link>
+        ) : (
           <CartContainer>
             <ShoppingCart size={22} weight={'fill'} />
             {cart.length > 0 ? <span>{cart.length}</span> : ''}
           </CartContainer>
-        </Link>
+        )}
       </ActionContainer>
     </HeaderContainer>
   )

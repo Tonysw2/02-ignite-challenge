@@ -9,8 +9,6 @@ export const InpuContainer = styled.div`
   background: ${(props) => props.theme.base_button};
   border-radius: 6px;
 
-  width: 4rem;
-
   &:focus-within {
     outline: 2px solid ${(props) => props.theme.purple};
   }
@@ -31,7 +29,7 @@ export const InpuContainer = styled.div`
   }
 
   & > input {
-    width: 100%;
+    width: 1.25rem;
     border: none;
     background: transparent;
     color: ${(props) => props.theme.base_title};

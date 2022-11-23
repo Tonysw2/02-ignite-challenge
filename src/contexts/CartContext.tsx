@@ -5,6 +5,8 @@ import { ActionTypes } from '../reducers/actions'
 interface CartContextType {
   cart: CoffeeOrder[]
   addCoffeeToCart: (coffeeOrder: CoffeeOrder) => void
+  increaseCoffeeAmount: (coffeeID: string) => void
+  decreaseCoffeeAmount: (coffeeID: string) => void
 }
 
 interface CartContextProviderProps {
@@ -34,7 +36,10 @@ function CartReducer(state: CoffeeOrder[], action: any) {
     case ActionTypes.INCREASE_AMOUNT: {
       const updatedCart = state.map((coffee) => {
         if (coffee.id === action.payload.id) {
-          return { ...coffee, amount: coffee.amount + 1 }
+          return {
+            ...coffee,
+            amount: coffee.amount + 1,
+          }
         } else {
           return coffee
         }
@@ -46,7 +51,10 @@ function CartReducer(state: CoffeeOrder[], action: any) {
     case ActionTypes.DECREASE_AMOUNT: {
       const updatedCart = state.map((coffee) => {
         if (coffee.id === action.payload.id) {
-          return { ...coffee, amount: coffee.amount - 1 }
+          return {
+            ...coffee,
+            amount: coffee.amount === 0 ? 0 : coffee.amount - 1,
+          }
         } else {
           return coffee
         }
@@ -69,8 +77,23 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch({ type: ActionTypes.ADD_COFFEE_TO_CART, payload: coffeeOrder })
   }
 
+  function increaseCoffeeAmount(coffeeID: string) {
+    dispatch({ type: ActionTypes.INCREASE_AMOUNT, payload: { id: coffeeID } })
+  }
+
+  function decreaseCoffeeAmount(coffeeID: string) {
+    dispatch({ type: ActionTypes.DECREASE_AMOUNT, payload: { id: coffeeID } })
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addCoffeeToCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addCoffeeToCart,
+        increaseCoffeeAmount,
+        decreaseCoffeeAmount,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )

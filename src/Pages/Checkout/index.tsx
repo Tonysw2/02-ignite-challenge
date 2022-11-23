@@ -1,102 +1,79 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from 'phosphor-react'
-import { useContext } from 'react'
-import { v4 as uuid } from 'uuid'
+import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
-import {
-  AdressContainer,
-  FirstCol,
-  FormContainer,
-  InputContainer,
-  PaymentContainer,
-  PaymentMethodContainer,
-  SecondCol,
-} from './styles'
+import { AdressForm } from './AdressForm'
+import { OrderedCoffeeList } from './OrderedCoffeeList'
+import { Payment } from './Payment'
+import { FirstCol, FormContainer, PaymentValue, SecondCol } from './styles'
+
+interface PaymentState {
+  totalOrder: string
+  deliveryTax: string
+  total: string
+}
 
 export function Checkout() {
   const { cart } = useContext(CartContext)
+  const [paymentState, setPaymentState] = useState<PaymentState>({
+    totalOrder: 'R$ 0,00',
+    deliveryTax: 'R$ 0,00',
+    total: 'R$ 0,00',
+  })
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      const totalOrder = cart.reduce(
+        (acc, current) => acc + current.price * current.amount,
+        0,
+      )
+      const deliveryTax = Math.round(Math.random() * 5)
+
+      const numberFormatOptions = { style: 'currency', currency: 'BRL' }
+
+      setPaymentState({
+        totalOrder: new Intl.NumberFormat('pt-br', numberFormatOptions).format(
+          totalOrder,
+        ),
+        deliveryTax: new Intl.NumberFormat('pt-br', numberFormatOptions).format(
+          deliveryTax,
+        ),
+        total: new Intl.NumberFormat('pt-br', numberFormatOptions).format(
+          deliveryTax + totalOrder,
+        ),
+      })
+    }
+  }, [cart])
 
   return (
     <FormContainer>
       <FirstCol>
         <h1>Complete seu pedido</h1>
-        <AdressContainer>
-          <header>
-            <MapPinLine size={22} />
-            <p>
-              Endereço de entrega
-              <span>Informe o endereço onde deseja receber seu pedido</span>
-            </p>
-          </header>
 
-          <InputContainer>
-            <input type="text" id="cep" placeholder="CEP" />
-            <input type="text" id="rua" placeholder="Rua" />
-            <input type="text" id="número" placeholder="Número" />
-            <input type="text" id="complemento" placeholder="Complemento" />
-            <input type="text" id="bairro" placeholder="Bairro" />
-            <input type="text" id="cidade" placeholder="Cidade" />
-            <input type="text" id="estado" placeholder="UF" />
-          </InputContainer>
-        </AdressContainer>
-
-        <PaymentContainer>
-          <header>
-            <CurrencyDollar size={22} />
-            <p>
-              Pagamento
-              <span>
-                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </span>
-            </p>
-          </header>
-
-          <PaymentMethodContainer>
-            <div>
-              <CreditCard size={16} />
-              <p>cartão de crédito</p>
-            </div>
-            <div>
-              <Bank size={16} />
-              <p>cartão de débito</p>
-            </div>
-            <div className="active">
-              <Money size={16} />
-              <p>dinheiro</p>
-            </div>
-          </PaymentMethodContainer>
-        </PaymentContainer>
+        <div>
+          <AdressForm />
+          <Payment />
+        </div>
       </FirstCol>
 
       <SecondCol>
         <h1>Cafés selecionados</h1>
 
         <div>
-          <ul>
-            {cart.map((coffee) => {
-              return (
-                <li key={uuid()}>
-                  <img src={`${coffee.type}.png`} alt="" />
-                  <p>{coffee.name}</p>
-                  <p>{coffee.price}</p>
-                </li>
-              )
-            })}
-          </ul>
+          <OrderedCoffeeList />
 
-          <div>
-            <p>Total de itens</p>
-            <p>Entrega</p>
-            <p>Total</p>
-          </div>
+          <PaymentValue>
+            <p>
+              Total de itens <span>{paymentState.totalOrder}</span>
+            </p>
+            <p>
+              Entrega <span>{paymentState.deliveryTax}</span>
+            </p>
+            <p>
+              Total <span>{paymentState.total}</span>
+            </p>
+          </PaymentValue>
+
+          <button>confirmar pedido</button>
         </div>
-
-        <button>confirmar pedido</button>
       </SecondCol>
     </FormContainer>
   )
