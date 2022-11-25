@@ -43,32 +43,38 @@ export const PaymentMethodContainer = styled.div`
   align-items: center;
   gap: 0.875rem;
 
-  & .active {
-    background: ${(props) => props.theme.purple_light};
-    outline: 1px solid ${(props) => props.theme.purple};
-  }
-
-  & div {
+  & button {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 0.75rem;
 
-    padding: 1rem;
-    background: ${(props) => props.theme.base_button};
+    border: none;
     border-radius: 6px;
+    background: ${(props) => props.theme.base_button};
+    padding: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: ${(props) => props.theme.base_text};
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      background: ${(props) => props.theme.base_hover};
+    }
 
     & > svg {
       color: ${(props) => props.theme.purple};
     }
+  }
 
-    & > p {
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      color: ${(props) => props.theme.base_text};
-    }
+  & .active {
+    background: ${(props) => props.theme.purple_light};
+    outline: 1px solid ${(props) => props.theme.purple_dark};
 
     &:hover {
-      background: ${(props) => props.theme.base_hover};
+      background: ${(props) => props.theme.purple_light};
     }
   }
 `

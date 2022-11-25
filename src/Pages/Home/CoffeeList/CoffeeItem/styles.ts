@@ -61,14 +61,10 @@ export const BuyContainer = styled.form`
   gap: 1.375rem;
 
   & > p {
-    font-size: 0.875rem;
     color: ${(props) => props.theme.base_text};
-
-    & > span {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-    }
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
   }
 
   & > div {

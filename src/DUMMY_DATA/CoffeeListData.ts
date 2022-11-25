@@ -7,8 +7,7 @@ export const coffeeListData = [
     tag: ['tradicional'],
     name: 'Expreso tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'americano',
@@ -16,8 +15,7 @@ export const coffeeListData = [
     tag: ['tradicional'],
     name: ' Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'expresso_cremoso',
@@ -25,8 +23,7 @@ export const coffeeListData = [
     tag: ['tradicional'],
     name: 'Expresso Cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'café_gelado',
@@ -34,8 +31,7 @@ export const coffeeListData = [
     tag: ['tradicional', 'gelado'],
     name: 'Expresso Gelado',
     description: 'Bebida preparada com café expresso e cubos de gelo',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'café_leite',
@@ -43,8 +39,7 @@ export const coffeeListData = [
     tag: ['tradicional', 'com leite'],
     name: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'latte',
@@ -53,8 +48,8 @@ export const coffeeListData = [
     name: 'Latte',
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-    // amount: 0,
-    price: 9.9,
+
+    price: 5,
   },
   {
     type: 'capuccino',
@@ -63,8 +58,8 @@ export const coffeeListData = [
     name: 'Capuccino',
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma',
-    // amount: 0,
-    price: 9.9,
+
+    price: 5,
   },
   {
     type: 'macchiato',
@@ -73,8 +68,8 @@ export const coffeeListData = [
     name: 'Macchiato',
     description:
       'Café expresso misturado com um pouco de leite quente e espuma',
-    // amount: 0,
-    price: 9.9,
+
+    price: 5,
   },
   {
     type: 'mochaccino',
@@ -82,8 +77,7 @@ export const coffeeListData = [
     tag: ['tradicional', 'com leite'],
     name: 'Mochaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'chocolate_quente',
@@ -91,8 +85,7 @@ export const coffeeListData = [
     tag: ['especial', 'com leite'],
     name: 'Chocolate Quente',
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'cubano',
@@ -101,8 +94,8 @@ export const coffeeListData = [
     name: 'Cubano',
     description:
       'Drink gelado de café expresso com rum, creme de leite e hortelã',
-    // amount: 0,
-    price: 9.9,
+
+    price: 5,
   },
   {
     type: 'havaiano',
@@ -110,8 +103,7 @@ export const coffeeListData = [
     tag: ['especial'],
     name: 'Havaiano',
     description: 'Bebida adocicada preparada com café e leite de coco',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'árabe',
@@ -119,8 +111,7 @@ export const coffeeListData = [
     tag: ['especial'],
     name: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
   {
     type: 'irlandês',
@@ -128,7 +119,6 @@ export const coffeeListData = [
     tag: ['especial', 'alcoólico'],
     name: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-    price: 9.9,
-    // amount: 0,
+    price: 5,
   },
 ]

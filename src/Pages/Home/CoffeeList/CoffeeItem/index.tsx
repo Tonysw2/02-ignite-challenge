@@ -56,6 +56,11 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
     setAmountInput(0)
   }
 
+  const splitedFormattedPrice = new Intl.NumberFormat('pt-br', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(coffeeDetails.price)
+
   return (
     <ListItem key={coffeeDetails.id}>
       <img src={`${coffeeDetails.type}.png`} alt="" />
@@ -72,9 +77,7 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
       </p>
 
       <BuyContainer onSubmit={handleAddCoffeeToCart}>
-        <p>
-          R$ <span>{coffeeDetails.price}</span>
-        </p>
+        <p>{splitedFormattedPrice}</p>
 
         <div>
           <InputAmount
