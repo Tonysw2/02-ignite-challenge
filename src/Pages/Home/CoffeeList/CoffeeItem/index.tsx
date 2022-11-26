@@ -5,14 +5,6 @@ import { InputAmount } from '../../../../components/InputAmount'
 import { CartContext } from '../../../../contexts/CartContext'
 import { BuyContainer, CoffeeTags, ListItem } from './styles'
 
-export interface CoffeeOrder {
-  id: string
-  amount: number
-  type: string
-  price: number
-  name: string
-}
-
 interface CoffeeDetails {
   type: string
   id: string
@@ -28,7 +20,7 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
   const [amountInput, setAmountInput] = useState(0)
-  const { addCoffeeToCart } = useContext(CartContext)
+  const { addOrderToCart } = useContext(CartContext)
 
   function increaseAmountInput() {
     setAmountInput((prev) => prev + 1)
@@ -45,14 +37,14 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 
     if (amountInput === 0) return
 
-    const coffeeOrder = {
+    addOrderToCart({
       id: coffeeDetails.id,
-      amount: amountInput,
       type: coffeeDetails.type,
-      price: coffeeDetails.price,
       name: coffeeDetails.name,
-    }
-    addCoffeeToCart(coffeeOrder)
+      amount: amountInput,
+      price: coffeeDetails.price,
+    })
+
     setAmountInput(0)
   }
 

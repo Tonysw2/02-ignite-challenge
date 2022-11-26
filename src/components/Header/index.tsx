@@ -11,7 +11,7 @@ import {
 } from './styles'
 
 export function Header() {
-  const cart = []
+  const { cart } = useContext(CartContext)
 
   return (
     <HeaderContainer>

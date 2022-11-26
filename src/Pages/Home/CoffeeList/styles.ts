@@ -23,8 +23,8 @@ export const CoffeeListContainer = styled.section`
 export const List = styled.ul`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  column-gap: 2rem;
+  row-gap: 2.5rem;
   flex-wrap: wrap;
   list-style: none;
 `
-

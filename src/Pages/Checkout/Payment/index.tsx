@@ -19,7 +19,6 @@ export function Payment() {
     { name: 'cartão de débito', icon: <Bank size={16} />, active: false },
     { name: 'dinheiro', icon: <Money size={16} />, active: false },
   ])
-  console.log(paymentMethods)
 
   function handleToggleActivePaymentMethod(e: MouseEvent) {
     setPaymentMethods((prev) => {

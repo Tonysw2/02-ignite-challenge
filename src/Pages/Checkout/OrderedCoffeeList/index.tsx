@@ -6,23 +6,7 @@ import { CartContext } from '../../../contexts/CartContext'
 import { Actions, List } from './styles'
 
 export function OrderedCoffeeList() {
-  const cart = [
-    {
-      id: 'uehd',
-      type: 'expresso',
-      name: 'expresso tradicional',
-      amount: 3,
-      price: 5,
-    },
-  ]
-
-  function handleIncreaseCoffeeAmount(id: string) {
-    increaseCoffeeAmount(id)
-  }
-
-  function handleDecreaseCoffeeAmount(id: string) {
-    decreaseCoffeeAmount(id)
-  }
+  const { cart, removeOrderFromCart } = useContext(CartContext)
 
   return (
     <List>
@@ -39,11 +23,14 @@ export function OrderedCoffeeList() {
                   <InputAmount
                     amount={coffee.amount}
                     id={coffee.id}
-                    onIncrease={handleIncreaseCoffeeAmount}
-                    onDecrease={handleDecreaseCoffeeAmount}
+                    onIncrease={() => {}}
+                    onDecrease={() => {}}
                   />
 
-                  <button type="button">
+                  <button
+                    type="button"
+                    onClick={() => removeOrderFromCart({ id: coffee.id })}
+                  >
                     <Trash size={16} />
                     remover
                   </button>
