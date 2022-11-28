@@ -2,15 +2,20 @@ import { Trash } from 'phosphor-react'
 import { useContext } from 'react'
 import { v4 as uuid } from 'uuid'
 import { InputAmount } from '../../../components/InputAmount'
-import { CartContext } from '../../../contexts/CartContext'
+import { CheckoutContext } from '../../../contexts/CheckoutContext'
 import { Actions, List } from './styles'
 
 export function OrderedCoffeeList() {
-  const { cart, removeOrderFromCart } = useContext(CartContext)
+  const {
+    checkoutState,
+    removeOrderFromCart,
+    increaseAmountOnCart,
+    decreaseAmountOnCart,
+  } = useContext(CheckoutContext)
 
   return (
     <List>
-      {cart.map((coffee) => {
+      {checkoutState.cart.map((coffee) => {
         return (
           <li key={uuid()}>
             <div>
@@ -22,9 +27,12 @@ export function OrderedCoffeeList() {
                 <div>
                   <InputAmount
                     amount={coffee.amount}
-                    id={coffee.id}
-                    onIncrease={() => {}}
-                    onDecrease={() => {}}
+                    onIncrease={() => {
+                      increaseAmountOnCart({ id: coffee.id })
+                    }}
+                    onDecrease={() => {
+                      decreaseAmountOnCart({ id: coffee.id })
+                    }}
                   />
 
                   <button

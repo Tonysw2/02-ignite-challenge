@@ -2,7 +2,7 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.svg'
-import { CartContext } from '../../contexts/CartContext'
+import { CheckoutContext } from '../../contexts/CheckoutContext'
 import {
   ActionContainer,
   CartContainer,
@@ -11,7 +11,7 @@ import {
 } from './styles'
 
 export function Header() {
-  const { cart } = useContext(CartContext)
+  const { checkoutState } = useContext(CheckoutContext)
 
   return (
     <HeaderContainer>
@@ -25,17 +25,25 @@ export function Header() {
           </span>
           Porto Alegre, RS
         </Location>
-        {cart.length > 0 ? (
+        {checkoutState.cart.length > 0 ? (
           <Link to={'/Checkout'}>
             <CartContainer>
               <ShoppingCart size={22} weight={'fill'} />
-              {cart.length > 0 ? <span>{cart.length}</span> : ''}
+              {checkoutState.cart.length > 0 ? (
+                <span>{checkoutState.cart.length}</span>
+              ) : (
+                ''
+              )}
             </CartContainer>
           </Link>
         ) : (
           <CartContainer>
             <ShoppingCart size={22} weight={'fill'} />
-            {cart.length > 0 ? <span>{cart.length}</span> : ''}
+            {checkoutState.cart.length > 0 ? (
+              <span>{checkoutState.cart.length}</span>
+            ) : (
+              ''
+            )}
           </CartContainer>
         )}
       </ActionContainer>

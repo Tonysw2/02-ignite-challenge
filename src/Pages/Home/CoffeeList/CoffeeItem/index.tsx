@@ -2,7 +2,7 @@ import { ShoppingCart } from 'phosphor-react'
 import { FormEvent, useContext, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { InputAmount } from '../../../../components/InputAmount'
-import { CartContext } from '../../../../contexts/CartContext'
+import { CheckoutContext } from '../../../../contexts/CheckoutContext'
 import { BuyContainer, CoffeeTags, ListItem } from './styles'
 
 interface CoffeeDetails {
@@ -20,7 +20,7 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
   const [amountInput, setAmountInput] = useState(0)
-  const { addOrderToCart } = useContext(CartContext)
+  const { addOrderToCart } = useContext(CheckoutContext)
 
   function increaseAmountInput() {
     setAmountInput((prev) => prev + 1)

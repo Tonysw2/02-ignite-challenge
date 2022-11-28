@@ -1,8 +1,11 @@
 import { MapPinLine } from 'phosphor-react'
 import { ChangeEvent } from 'react'
+import { useFormContext } from 'react-hook-form'
 import { AdressContainer, InputContainer } from './styles'
 
 export function AdressForm() {
+  const { register } = useFormContext()
+
   function handleCepChange(e: ChangeEvent<HTMLInputElement>) {
     let value = e.currentTarget.value
 
@@ -24,18 +27,55 @@ export function AdressForm() {
 
       <InputContainer>
         <input
+          {...register('cep')}
           onChange={handleCepChange}
           type="text"
           id="cep"
           placeholder="CEP - 00000-000"
           required
         />
-        <input type="text" id="rua" placeholder="Rua" required />
-        <input type="text" id="número" placeholder="Número" required />
-        <input type="text" id="complemento" placeholder="Complemento" />
-        <input type="text" id="bairro" placeholder="Bairro" required />
-        <input type="text" id="cidade" placeholder="Cidade" required />
-        <input type="text" id="estado" placeholder="UF" required />
+        <input
+          {...register('rua')}
+          type="text"
+          id="rua"
+          placeholder="Rua"
+          required
+        />
+        <input
+          {...register('número')}
+          type="text"
+          id="número"
+          placeholder="Número"
+          required
+        />
+        <input
+          {...register('complemento')}
+          type="text"
+          id="complemento"
+          placeholder="Complemento"
+        />
+        <input
+          {...register('bairro')}
+          type="text"
+          id="bairro"
+          placeholder="Bairro"
+          required
+        />
+        <input
+          {...register('cidade')}
+          type="text"
+          id="cidade"
+          placeholder="Cidade"
+          required
+        />
+        <input
+          {...register('estado')}
+          maxLength={2}
+          type="text"
+          id="estado"
+          placeholder="UF"
+          required
+        />
       </InputContainer>
     </AdressContainer>
   )

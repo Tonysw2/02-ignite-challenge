@@ -62,6 +62,7 @@ export const Actions = styled.div`
       line-height: 1.734;
       color: ${(props) => props.theme.base_text};
       text-transform: uppercase;
+      cursor: pointer;
 
       & > svg {
         color: ${(props) => props.theme.purple};

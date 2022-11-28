@@ -1,5 +1,7 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useContext } from 'react'
 import DeliveryImage from '../../assets/delivery.svg'
+import { CheckoutContext } from '../../contexts/CheckoutContext'
 import {
   Container,
   DeliveryDataContainer,
@@ -8,6 +10,8 @@ import {
 } from './styles'
 
 export function Success() {
+  const { checkoutState } = useContext(CheckoutContext)
+
   return (
     <SectionContainer>
       <h1>Uhu! Pedido confirmado</h1>
@@ -17,18 +21,20 @@ export function Success() {
         <DeliveryDataContainer>
           <WrapInformation>
             <div>
-              <MapPin />
+              <MapPin size={16} weight="fill" />
             </div>
 
             <p>
-              Entrega em <span>Rua João Daniel Martinelli, 102</span> <br />
-              Farrapos - Porto Alegre, RS
+              Entrega em
+              <span>{` ${checkoutState.adress.rua}, ${checkoutState.adress.número}`}</span>
+              <br />
+              {`${checkoutState.adress.bairro} - ${checkoutState.adress.cidade}, ${checkoutState.adress.estado}`}
             </p>
           </WrapInformation>
 
           <WrapInformation>
             <div>
-              <Timer />
+              <Timer size={16} />
             </div>
 
             <p>
@@ -38,11 +44,12 @@ export function Success() {
 
           <WrapInformation>
             <div>
-              <CurrencyDollar />
+              <CurrencyDollar size={16} />
             </div>
 
             <p>
-              Pagamento na entrega <br /> <span>Cartão de Crédito</span>
+              Pagamento na entrega <br />
+              <span>{checkoutState.paymentMethod}</span>
             </p>
           </WrapInformation>
         </DeliveryDataContainer>

@@ -44,6 +44,16 @@ export const DeliveryDataContainer = styled.div`
   border: 1px solid transparent;
   border-radius: 6px 36px;
   padding: 2.5rem;
+
+  & div:nth-child(1) > div {
+    background: ${(props) => props.theme.purple};
+  }
+  & div:nth-child(2) > div {
+    background: ${(props) => props.theme.yellow};
+  }
+  & div:nth-child(3) > div {
+    background: ${(props) => props.theme.yellow_dark};
+  }
 `
 
 export const WrapInformation = styled.div`
@@ -57,7 +67,7 @@ export const WrapInformation = styled.div`
     justify-content: center;
 
     padding: 0.5rem;
-    background: ${(props) => props.theme.yellow_dark};
+    background: ${(props) => props.theme.purple_dark};
     border-radius: 999px;
 
     & > svg {
@@ -70,6 +80,10 @@ export const WrapInformation = styled.div`
 
     & > span {
       font-weight: 700;
+    }
+
+    & > span:last-child {
+      text-transform: capitalize;
     }
   }
 `

@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components'
-import { CartContextProvider } from './contexts/CartContext'
+import { CartContextProvider } from './contexts/CheckoutContext'
 import { Router } from './Routes'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/theme/default'
