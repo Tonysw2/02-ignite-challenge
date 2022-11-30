@@ -2,7 +2,7 @@
 
 Application to manage a shopping cart for a fitional coffee shop.
 
-# Functionalities
+## Functionalities
 
 - List of products available;
 - Add an espicific amount to the cart;
