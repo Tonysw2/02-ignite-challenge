@@ -3,10 +3,9 @@ import { ReactNode, useContext, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { CheckoutContext } from '../../contexts/CheckoutContext'
-import { AdressForm } from './AdressForm'
-import { OrderedCoffeeList } from './OrderedCoffeeList'
-import { Payment } from './Payment'
-import { FirstCol, FormContainer, PaymentValue, SecondCol } from './styles'
+import { AdressForm } from './components/AdressForm'
+import { OrderedCoffeeList } from './components/OrderedCoffeeList'
+import { Payment } from './components/Payment'
 
 interface PaymentState {
   totalOrder: string
@@ -33,11 +32,19 @@ export function Checkout() {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodsType[]>([
     {
       name: 'cartão de crédito',
-      icon: <CreditCard size={16} />,
+      icon: <CreditCard className="text-purple500 " size={16} />,
       active: false,
     },
-    { name: 'cartão de débito', icon: <Bank size={16} />, active: false },
-    { name: 'dinheiro', icon: <Money size={16} />, active: false },
+    {
+      name: 'cartão de débito',
+      icon: <Bank className="text-purple500 " size={16} />,
+      active: false,
+    },
+    {
+      name: 'dinheiro',
+      icon: <Money className="text-purple500 " size={16} />,
+      active: false,
+    },
   ])
 
   function handleToggleActivePaymentMethod(e: MouseEvent) {
@@ -68,7 +75,7 @@ export function Checkout() {
         (acc, current) => acc + current.price * current.amount,
         0,
       )
-      const deliveryTax = Math.round(Math.random() * 5)
+      const deliveryTax = 7
 
       const numberFormatOptions = { style: 'currency', currency: 'BRL' }
 
@@ -105,11 +112,16 @@ export function Checkout() {
   }
 
   return (
-    <FormContainer onSubmit={handleSubmit(handleSubmitOrder)}>
-      <FirstCol>
-        <h1>Complete seu pedido</h1>
+    <form
+      className="grid grid-cols-[3fr_2fr] gap-x-8 max-w-[70rem] my-0 mx-auto "
+      onSubmit={handleSubmit(handleSubmitOrder)}
+    >
+      <div>
+        <h1 className="font-baloo font-bold text-lg text-subtitle mb-4 ">
+          Complete seu pedido
+        </h1>
 
-        <div>
+        <div className="flex flex-col gap-3 ">
           <FormProvider {...orderForm}>
             <AdressForm />
           </FormProvider>
@@ -119,29 +131,36 @@ export function Checkout() {
             handleToggleActivePaymentMethod={handleToggleActivePaymentMethod}
           />
         </div>
-      </FirstCol>
+      </div>
 
-      <SecondCol>
-        <h1>Cafés selecionados</h1>
+      <div>
+        <h1 className="font-baloo font-bold text-lg text-subtitle mb-4 ">
+          Cafés selecionados
+        </h1>
 
-        <div>
+        <div className="flex flex-col p-10 bg-card rounded-tl-md rounded-tr-[44px] rounded-bl-[44px] rounded-br-md ">
           <OrderedCoffeeList />
 
-          <PaymentValue>
-            <p>
-              Total de itens <span>{paymentState.totalOrder}</span>
+          <div className="flex flex-col justify-center gap-3 py-6 border-t-[1px] border-solid border-button ">
+            <p className="flex items-center justify-between text-sm text-text ">
+              Total de itens
+              <span className="text-base ">{paymentState.totalOrder}</span>
             </p>
-            <p>
-              Entrega <span>{paymentState.deliveryTax}</span>
+            <p className="flex items-center justify-between text-sm text-text ">
+              Entrega
+              <span className="text-base ">{paymentState.deliveryTax}</span>
             </p>
-            <p>
-              Total <span>{paymentState.total}</span>
+            <p className="peer hover:cursor-pointer flex items-center justify-between text-sm text-text last:text-xl last:font-bold last:text-subtitle ">
+              Total
+              <span>{paymentState.total}</span>
             </p>
-          </PaymentValue>
+          </div>
 
-          <button>confirmar pedido</button>
+          <button className="py-3 px-2 bg-yellow500 font-bold text-sm leading- text-white uppercase rounded-md hover:transition-all hover:duration-200 hover:bg-yellow700 ">
+            confirmar pedido
+          </button>
         </div>
-      </SecondCol>
-    </FormContainer>
+      </div>
+    </form>
   )
 }

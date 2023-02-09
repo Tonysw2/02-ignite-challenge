@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import { DefaultLayout } from './layouts/DefaultLayout'
-import { Checkout } from './Pages/Checkout'
-import { Home } from './Pages/Home'
-import { Success } from './Pages/Success'
+import { Checkout } from './Pages/Checkout/Checkout'
+import { Home } from './Pages/Home/Home'
+import { Success } from './Pages/Success/Success'
 
 export function Router() {
   return (
