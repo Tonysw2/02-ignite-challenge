@@ -4,7 +4,7 @@ import { CoffeeItem } from './CoffeeItem'
 
 export function CoffeeList() {
   return (
-    <ul className="flex flex-wrap items-center gap-y-10 gap-x-8">
+    <ul className="flex flex-wrap items-center justify-center gap-y-10 gap-x-8">
       {coffeeListData.map((coffeeDetails) => (
         <CoffeeItem key={uuid()} coffeeDetails={coffeeDetails} />
       ))}

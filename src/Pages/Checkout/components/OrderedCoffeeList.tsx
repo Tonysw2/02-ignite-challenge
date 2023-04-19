@@ -13,7 +13,7 @@ export function OrderedCoffeeList() {
   } = useContext(CheckoutContext)
 
   return (
-    <div className="overflow-y-scroll max-h-[20rem] ">
+    <div className="overflow-y-auto max-h-[20.65rem] ">
       <ul className="flex flex-col justify-center list-none">
         {checkoutState.cart.map((coffee) => {
           return (

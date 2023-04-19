@@ -8,9 +8,8 @@ export function AdressForm() {
   function handleCepChange(e: ChangeEvent<HTMLInputElement>) {
     let value = e.currentTarget.value
 
-    e.currentTarget.maxLength = 9
     value = value.replace(/\D/g, '')
-    value = value.replace(/(\d{5})(\d)/g, '$1-$2')
+    value = value.replace(/(\d{5})(\d{3})/g, '$1-$2')
     e.currentTarget.value = value
   }
 
