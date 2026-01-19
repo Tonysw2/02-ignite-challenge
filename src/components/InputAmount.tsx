@@ -9,9 +9,9 @@ interface InputAmountProps {
 
 export function InputAmount({ ...rest }: InputAmountProps) {
 	return (
-		<div className="h-[38px] flex items-center justify-center gap-1 p-2 bg-button rounded-md focus-within:outline-2 focus-within:outline-purple500">
+		<div className="h-9.5 flex items-center justify-center gap-1 p-2 bg-button rounded-md focus-within:outline-2 focus-within:outline-purple-500">
 			<button
-				className="flex items-center justify-center border-none bg-transparent text-purple500 transition-all duration-200 hover:text-purple700 disabled:cursor-not-allowed"
+				className="flex items-center justify-center border-none bg-transparent text-purple-500 transition-all duration-200 hover:text-purple-700 disabled:cursor-not-allowed"
 				type="button"
 				onClick={() => rest.onDecrease(rest.id)}
 				disabled={rest.amount === 0}
@@ -20,7 +20,7 @@ export function InputAmount({ ...rest }: InputAmountProps) {
 			</button>
 
 			<input
-				className="w-5 bg-transparent text-title text-center focus:outline-none"
+				className="w-5 bg-transparent text-title text-base text-center p-0 focus:outline-none"
 				type="number"
 				placeholder="0"
 				value={rest.amount}
@@ -28,7 +28,7 @@ export function InputAmount({ ...rest }: InputAmountProps) {
 			/>
 
 			<button
-				className="flex items-center justify-center border-none bg-transparent text-purple500 transition-all duration-200 hover:text-purple700"
+				className="flex items-center justify-center border-none bg-transparent text-purple-500 transition-all duration-200 hover:text-purple-700"
 				type="button"
 				onClick={() => rest.onIncrease(rest.id)}
 			>

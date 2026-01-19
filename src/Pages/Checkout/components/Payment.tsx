@@ -14,8 +14,8 @@ export function Payment({
 	return (
 		<div className="flex flex-col justify-center gap-8 p-10 bg-card rounded-md ">
 			<header className="flex items-start justify-start gap-2 ">
-				<CurrencyDollar className="text-purple500 " size={22} />
-				<p className="flex flex-col items-start justify-center gap-[0.125rem] text-subtitle ">
+				<CurrencyDollar className="text-purple-500 " size={22} />
+				<p className="flex flex-col items-start justify-center gap-0.5 text-subtitle ">
 					Pagamento
 					<span className="text-sm text-text ">
 						O pagamento é feito na entrega. Escolha a forma que deseja pagar
@@ -23,13 +23,13 @@ export function Payment({
 				</p>
 			</header>
 
-			<div className="grid grid-cols-3 items-center gap-[0.875rem] ">
+			<div className="grid grid-cols-3 items-center gap-3.5 ">
 				{paymentMethods.map((method) => (
 					<button
 						key={uuid()}
 						className={`${
 							method.active
-								? 'bg-purple300 outline outline-1 outline-purple700 '
+								? 'bg-purple-300 outline outline-1 outline-purple-700 '
 								: 'bg-button hover:bg-hover '
 						} flex items-center justify-start gap-3 rounded-md p-4 text-xs text-text leading-2 uppercase cursor-pointer hover:transition-all hover:duration-200 `}
 						type="button"

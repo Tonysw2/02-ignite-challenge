@@ -66,7 +66,7 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 			<div className="flex items-center gap-1 mb-4">
 				{coffeeDetails.tag.map((tag) => (
 					<p
-						className="rounded-full py-1 px-2 bg-yellow300 font-bold text-1xs text-center text-yellow700 uppercase"
+						className="rounded-full py-1 px-2 bg-yellow-300 font-bold text-1xs text-center text-yellow-700 uppercase"
 						key={uuid()}
 					>
 						{tag}
@@ -97,7 +97,7 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 					/>
 
 					<button
-						className="flex items-center justify-center p-2 rounded-md bg-purple700"
+						className="flex items-center justify-center p-2 rounded-md bg-purple-700"
 						type="submit"
 					>
 						<ShoppingCart className="text-white" size={22} weight={'fill'} />

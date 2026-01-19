@@ -32,17 +32,17 @@ export function Checkout() {
 	const [paymentMethods, setPaymentMethods] = useState<PaymentMethodsType[]>([
 		{
 			name: 'cartão de crédito',
-			icon: <CreditCard className="text-purple500 " size={16} />,
+			icon: <CreditCard className="text-purple-500 " size={16} />,
 			active: false,
 		},
 		{
 			name: 'cartão de débito',
-			icon: <Bank className="text-purple500 " size={16} />,
+			icon: <Bank className="text-purple-500 " size={16} />,
 			active: false,
 		},
 		{
 			name: 'dinheiro',
-			icon: <Money className="text-purple500 " size={16} />,
+			icon: <Money className="text-purple-500 " size={16} />,
 			active: false,
 		},
 	])
@@ -113,7 +113,7 @@ export function Checkout() {
 
 	return (
 		<form
-			className="grid grid-cols-[3fr_2fr] gap-x-8 max-w-[70rem] my-0 mx-auto "
+			className="grid grid-cols-[3fr_2fr] gap-x-8 max-w-280 my-0 mx-auto "
 			onSubmit={handleSubmit(handleSubmitOrder)}
 		>
 			<div>
@@ -141,7 +141,7 @@ export function Checkout() {
 				<div className="flex flex-col p-10 bg-card rounded-tl-md rounded-tr-[44px] rounded-bl-[44px] rounded-br-md ">
 					<OrderedCoffeeList />
 
-					<div className="flex flex-col justify-center gap-3 py-6 border-t-[1px] border-solid border-button ">
+					<div className="flex flex-col justify-center gap-3 py-6 border-t border-solid border-button ">
 						<p className="flex items-center justify-between text-sm text-text ">
 							Total de itens
 							<span className="text-base ">{paymentState.totalOrder}</span>
@@ -156,7 +156,7 @@ export function Checkout() {
 						</p>
 					</div>
 
-					<button className="py-3 px-2 bg-yellow500 font-bold text-sm leading- text-white uppercase rounded-md hover:transition-all hover:duration-200 hover:bg-yellow700 ">
+					<button className="py-3 px-2 bg-yellow-500 font-bold text-sm leading- text-white uppercase rounded-md hover:transition-all hover:duration-200 hover:bg-yellow-700 ">
 						confirmar pedido
 					</button>
 				</div>

@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+	/* Colors */
+	--color-white: #ffffff;
+	--color-background: #fafafa;
+
+	--color-yellow-300: #f1e9c9;
+	--color-yellow-500: #dbac2c;
+	--color-yellow-700: #c47f17;
+
+	--color-purple-300: #ebe5f9;
+	--color-purple-500: #8047f8;
+	--color-purple-700: #4b2995;
+
+	--color-card: #f3f2f2;
+	--color-input: #ededed;
+	--color-button: #e6e5e5;
+	--color-hover: #d7d5d5;
+	--color-label: #8d8686;
+	--color-text: #574f4d;
+	--color-subtitle: #403937;
+	--color-title: #272221;
+
+	/* Font Families */
+	--font-roboto: "Roboto", sans-serif;
+	--font-baloo: "Baloo 2", cursive;
+
+	/* Font Sizes */
+	--text-1xs: 0.625rem;
+	--text-xs: 0.75rem;
+	--text-sm: 0.875rem;
+	--text-base: 1rem;
+	--text-lg: 1.125rem;
+	--text-xl: 1.25rem;
+	--text-1xl: 1.5rem;
+	--text-2xl: 2rem;
+	--text-3xl: 3rem;
+
+	/* Line Heights */
+	--leading-1: 130%;
+	--leading-2: 160%;
+}
+
+@layer base {
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+}

@@ -16,8 +16,8 @@ export function AdressForm() {
 	return (
 		<div className="flex flex-col justify-center gap-8 p-10 bg-card rounded-md ">
 			<header className="flex items-start justify-start gap-2 ">
-				<MapPinLine className="text-yellow700  " size={22} />
-				<p className="flex flex-col items-start justify-center gap-[0.125rem] text-subtitle ">
+				<MapPinLine className="text-yellow-700  " size={22} />
+				<p className="flex flex-col items-start justify-center gap-0.5 text-subtitle ">
 					Endereço de entrega
 					<span className="text-sm text-text ">
 						Informe o endereço onde deseja receber seu pedido
@@ -28,7 +28,7 @@ export function AdressForm() {
 			<div className="grid grid-cols-5 grid-rows-4 gap-x-3 gap-y-4 ">
 				<input
 					{...register('cep')}
-					className="col-span-2 border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700 "
+					className="col-span-2 border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700 "
 					onChange={handleCepChange}
 					type="text"
 					id="cep"
@@ -36,7 +36,7 @@ export function AdressForm() {
 					required
 				/>
 				<input
-					className="col-span-full border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700  "
+					className="col-span-full border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700  "
 					{...register('rua')}
 					type="text"
 					id="rua"
@@ -44,7 +44,7 @@ export function AdressForm() {
 					required
 				/>
 				<input
-					className="col-span-2 border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700  "
+					className="col-span-2 border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700  "
 					{...register('número')}
 					type="text"
 					id="número"
@@ -52,14 +52,14 @@ export function AdressForm() {
 					required
 				/>
 				<input
-					className="col-span-3 border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700  "
+					className="col-span-3 border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700  "
 					{...register('complemento')}
 					type="text"
 					id="complemento"
 					placeholder="Complemento"
 				/>
 				<input
-					className="col-span-2 border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700  "
+					className="col-span-2 border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700  "
 					{...register('bairro')}
 					type="text"
 					id="bairro"
@@ -67,7 +67,7 @@ export function AdressForm() {
 					required
 				/>
 				<input
-					className="col-span-2 border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700  "
+					className="col-span-2 border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700  "
 					{...register('cidade')}
 					type="text"
 					id="cidade"
@@ -76,7 +76,7 @@ export function AdressForm() {
 				/>
 				<input
 					{...register('estado')}
-					className="col-span-1 border-[1px] border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm uppercase placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow700  "
+					className="col-span-1 border border-solid border-button rounded-[4px] p-3 bg-input text-text text-sm uppercase placeholder:text-label placeholder:text-sm focus:outline focus:outline-1 focus:outline-yellow-700  "
 					maxLength={2}
 					type="text"
 					id="estado"

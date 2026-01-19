@@ -7,19 +7,19 @@ export function Success() {
 	const { checkoutState } = useContext(CheckoutContext)
 
 	return (
-		<section className=" max-w-[70rem] my-0 mx-auto">
-			<h1 className="font-baloo font-extrabold text-2xl text-yellow700 ">
+		<section className=" max-w-280 my-0 mx-auto">
+			<h1 className="font-baloo font-extrabold text-2xl text-yellow-700 ">
 				Uhu! Pedido confirmado
 			</h1>
 			<p className="text-xl text-subtitle mb-10 ">
 				Agora é só aguardar que o café chegará até você
 			</p>
 
-			<div className="grid grid-cols-2 gap-[6.375rem] ">
-				<div className="flex items-center p-1 bg-gradient-to-r from-yellow500 to-purple700 rounded-tl-md rounded-br-md rounded-tr-[36px] rounded-bl-[36px] ">
+			<div className="grid grid-cols-2 gap-25.5 ">
+				<div className="flex items-center p-1 bg-linear-to-r from-yellow-500 to-purple-700 rounded-tl-md rounded-br-md rounded-tr-[36px] rounded-bl-[36px] ">
 					<div className="flex flex-col justify-center gap-8 p-10 w-full h-full bg-background rounded-tl-md rounded-br-md rounded-tr-[36px] rounded-bl-[36px] ">
 						<div className="flex items-center gap-3 ">
-							<div className="flex items-center justify-center p-2 bg-purple700 rounded-full ">
+							<div className="flex items-center justify-center p-2 bg-purple-700 rounded-full ">
 								<MapPin size={16} weight="fill" className="text-white " />
 							</div>
 
@@ -32,7 +32,7 @@ export function Success() {
 						</div>
 
 						<div className="flex items-center gap-3 ">
-							<div className="flex items-center justify-center p-2 bg-purple700 rounded-full ">
+							<div className="flex items-center justify-center p-2 bg-purple-700 rounded-full ">
 								<Timer size={16} className="text-white " />
 							</div>
 
@@ -43,7 +43,7 @@ export function Success() {
 						</div>
 
 						<div className="flex items-center gap-3 ">
-							<div className="flex items-center justify-center p-2 bg-purple700 rounded-full ">
+							<div className="flex items-center justify-center p-2 bg-purple-700 rounded-full ">
 								<CurrencyDollar size={16} className="text-white " />
 							</div>
 

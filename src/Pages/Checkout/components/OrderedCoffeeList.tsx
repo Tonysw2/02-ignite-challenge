@@ -19,7 +19,7 @@ export function OrderedCoffeeList() {
 					return (
 						<li
 							key={uuid()}
-							className="flex items-start justify-between py-2 pt-6 mb-6 border-t-[1px] border-button first:border-none first:py-2 first:px-1   "
+							className="flex items-start justify-between py-2 pt-6 mb-6 border-t border-button first:border-none first:py-2 first:px-1   "
 						>
 							<div className="flex items-center gap-5 ">
 								<img className="w-16 " src={`${coffee.type}.png`} alt="" />
@@ -43,7 +43,7 @@ export function OrderedCoffeeList() {
 											type="button"
 											onClick={() => removeOrderFromCart({ id: coffee.id })}
 										>
-											<Trash className="text-purple500" size={16} />
+											<Trash className="text-purple-500" size={16} />
 											remover
 										</button>
 									</div>
