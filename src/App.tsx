@@ -1,10 +1,11 @@
+import { RouterProvider } from 'react-router'
 import { CartContextProvider } from './contexts/CheckoutContext'
-import { Router } from './Routes'
+import { router } from './Routes'
 
-export function App() {
+export const App = () => {
 	return (
 		<CartContextProvider>
-			<Router />
+			<RouterProvider router={router} />
 		</CartContextProvider>
 	)
 }

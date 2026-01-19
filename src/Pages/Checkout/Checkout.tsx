@@ -1,7 +1,7 @@
 import { Bank, CreditCard, Money } from 'phosphor-react'
 import { type ReactNode, useContext, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { CheckoutContext } from '../../contexts/CheckoutContext'
 import { AdressForm } from './components/AdressForm'
 import { OrderedCoffeeList } from './components/OrderedCoffeeList'

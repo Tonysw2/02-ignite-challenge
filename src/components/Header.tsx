@@ -1,6 +1,6 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import Logo from '../assets/logo.svg'
 import { CheckoutContext } from '../contexts/CheckoutContext'
 
