@@ -1,8 +1,8 @@
 import { Bank, CreditCard, Money } from 'phosphor-react'
-import { type ReactNode, useContext, useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
-import { CheckoutContext } from '../../contexts/CheckoutContext'
+import { useCheckoutStore } from '../../stores/useCheckoutStore'
 import { AdressForm } from './components/AdressForm'
 import { OrderedCoffeeList } from './components/OrderedCoffeeList'
 import { Payment } from './components/Payment'
@@ -20,8 +20,11 @@ export interface PaymentMethodsType {
 }
 
 export function Checkout() {
-	const { checkoutState, cleanCart, setAdressAndPaymentMethod } =
-		useContext(CheckoutContext)
+	const cart = useCheckoutStore((state) => state.cart)
+	const cleanCart = useCheckoutStore((state) => state.cleanCart)
+	const setAddressAndPayment = useCheckoutStore(
+		(state) => state.setAddressAndPayment,
+	)
 	const navigate = useNavigate()
 	const [paymentState, setPaymentState] = useState<PaymentState>({
 		totalOrder: 'R$ 0,00',
@@ -70,8 +73,8 @@ export function Checkout() {
 	const { handleSubmit } = orderForm
 
 	useEffect(() => {
-		if (checkoutState.cart.length > 0) {
-			const totalOrder = checkoutState.cart.reduce(
+		if (cart.length > 0) {
+			const totalOrder = cart.reduce(
 				(acc, current) => acc + current.price * current.amount,
 				0,
 			)
@@ -97,16 +100,13 @@ export function Checkout() {
 				total: 'R$ 0,00',
 			})
 		}
-	}, [checkoutState])
+	}, [cart])
 
 	function handleSubmitOrder(data: any) {
 		const paymentMethod = paymentMethods.find(
 			(method) => method.active === true,
 		)
-		setAdressAndPaymentMethod({
-			adress: data,
-			paymentMethod: paymentMethod?.name,
-		})
+		setAddressAndPayment(data, paymentMethod?.name ?? '')
 		cleanCart()
 		navigate('/Success')
 	}

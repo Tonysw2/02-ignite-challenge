@@ -1,21 +1,18 @@
 import { Trash } from 'phosphor-react'
-import { useContext } from 'react'
 import { v4 as uuid } from 'uuid'
 import { InputAmount } from '../../../components/InputAmount'
-import { CheckoutContext } from '../../../contexts/CheckoutContext'
+import { useCheckoutStore } from '../../../stores/useCheckoutStore'
 
 export function OrderedCoffeeList() {
-	const {
-		checkoutState,
-		removeOrderFromCart,
-		increaseAmountOnCart,
-		decreaseAmountOnCart,
-	} = useContext(CheckoutContext)
+	const cart = useCheckoutStore((state) => state.cart)
+	const removeFromCart = useCheckoutStore((state) => state.removeFromCart)
+	const increaseAmount = useCheckoutStore((state) => state.increaseAmount)
+	const decreaseAmount = useCheckoutStore((state) => state.decreaseAmount)
 
 	return (
 		<div className="overflow-y-auto max-h-[20.65rem] ">
 			<ul className="flex flex-col justify-center list-none">
-				{checkoutState.cart.map((coffee) => {
+				{cart.map((coffee) => {
 					return (
 						<li
 							key={uuid()}
@@ -31,17 +28,17 @@ export function OrderedCoffeeList() {
 										<InputAmount
 											amount={coffee.amount}
 											onIncrease={() => {
-												increaseAmountOnCart({ id: coffee.id })
+												increaseAmount(coffee.id)
 											}}
 											onDecrease={() => {
-												decreaseAmountOnCart({ id: coffee.id })
+												decreaseAmount(coffee.id)
 											}}
 										/>
 
 										<button
 											className="flex items-center gap-1 bg-button rounded-md p-2 text-xs text-text leading-[1.734] uppercase cursor-pointer"
 											type="button"
-											onClick={() => removeOrderFromCart({ id: coffee.id })}
+											onClick={() => removeFromCart(coffee.id)}
 										>
 											<Trash className="text-purple-500" size={16} />
 											remover

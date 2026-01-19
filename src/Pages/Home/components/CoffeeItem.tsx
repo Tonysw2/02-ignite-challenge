@@ -1,8 +1,8 @@
 import { ShoppingCart } from 'phosphor-react'
-import { type FormEvent, useContext, useState } from 'react'
+import { type FormEvent, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { InputAmount } from '../../../components/InputAmount'
-import { CheckoutContext } from '../../../contexts/CheckoutContext'
+import { useCheckoutStore } from '../../../stores/useCheckoutStore'
 
 interface CoffeeDetails {
 	type: string
@@ -19,7 +19,7 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 	const [amountInput, setAmountInput] = useState(0)
-	const { addOrderToCart } = useContext(CheckoutContext)
+	const addToCart = useCheckoutStore((state) => state.addToCart)
 
 	function increaseAmountInput() {
 		setAmountInput((prev) => prev + 1)
@@ -36,7 +36,7 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 
 		if (amountInput === 0) return
 
-		addOrderToCart({
+		addToCart({
 			id: coffeeDetails.id,
 			type: coffeeDetails.type,
 			name: coffeeDetails.name,

@@ -1,11 +1,10 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import { useContext } from 'react'
 import { Link } from 'react-router'
 import Logo from '../assets/logo.svg'
-import { CheckoutContext } from '../contexts/CheckoutContext'
+import { useCheckoutStore } from '../stores/useCheckoutStore'
 
 export function Header() {
-	const { checkoutState } = useContext(CheckoutContext)
+	const cartLength = useCheckoutStore((state) => state.cart.length)
 
 	return (
 		<header className="flex items-center justify-between my-0 mx-auto max-w-280 py-8">
@@ -20,13 +19,13 @@ export function Header() {
 					</span>
 					Lençóis Paulista, SP
 				</div>
-				{checkoutState.cart.length > 0 ? (
+				{cartLength > 0 ? (
 					<Link to={'/Checkout'}>
 						<button className="flex items-center justify-center p-2 bg-yellow-300 rounded-md text-yellow-700 relative">
 							<ShoppingCart size={22} weight={'fill'} />
-							{checkoutState.cart.length > 0 ? (
+							{cartLength > 0 ? (
 								<span className="absolute -top-1/4 -right-1/4 bg-yellow-700 text-white rounded-full text-center text-xs leading-2 font-bold w-5 h-5">
-									{checkoutState.cart.length}
+									{cartLength}
 								</span>
 							) : (
 								''
@@ -36,11 +35,7 @@ export function Header() {
 				) : (
 					<button className="flex items-center justify-center p-2 bg-yellow-300 rounded-md text-yellow-700 cursor-not-allowed">
 						<ShoppingCart size={22} weight={'fill'} />
-						{checkoutState.cart.length > 0 ? (
-							<span>{checkoutState.cart.length}</span>
-						) : (
-							''
-						)}
+						{cartLength > 0 ? <span>{cartLength}</span> : ''}
 					</button>
 				)}
 			</div>

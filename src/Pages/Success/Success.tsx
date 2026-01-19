@@ -1,10 +1,10 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
-import { useContext } from 'react'
 import DeliveryImage from '../../assets/delivery.svg'
-import { CheckoutContext } from '../../contexts/CheckoutContext'
+import { useCheckoutStore } from '../../stores/useCheckoutStore'
 
 export function Success() {
-	const { checkoutState } = useContext(CheckoutContext)
+	const address = useCheckoutStore((state) => state.address)
+	const paymentMethod = useCheckoutStore((state) => state.paymentMethod)
 
 	return (
 		<section className=" max-w-280 my-0 mx-auto">
@@ -25,9 +25,9 @@ export function Success() {
 
 							<p className="text-text ">
 								Entrega em
-								<span className="font-bold ">{` ${checkoutState.adress.rua}, ${checkoutState.adress.número}`}</span>
+								<span className="font-bold ">{` ${address.rua}, ${address.número}`}</span>
 								<br />
-								{`${checkoutState.adress.bairro} - ${checkoutState.adress.cidade}, ${checkoutState.adress.estado}`}
+								{`${address.bairro} - ${address.cidade}, ${address.estado}`}
 							</p>
 						</div>
 
@@ -50,7 +50,7 @@ export function Success() {
 							<p className="text-text ">
 								Pagamento na entrega <br />
 								<span className="font-bold last:capitalize">
-									{checkoutState.paymentMethod}
+									{paymentMethod}
 								</span>
 							</p>
 						</div>
