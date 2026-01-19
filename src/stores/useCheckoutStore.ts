@@ -13,7 +13,7 @@ export interface AddressType {
 	bairro: string
 	cep: string
 	cidade: string
-	complemento: string
+	complemento?: string
 	estado: string
 	número: string
 	rua: string
