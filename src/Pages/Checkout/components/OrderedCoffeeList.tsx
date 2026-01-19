@@ -1,13 +1,19 @@
 import { Trash } from 'phosphor-react'
 import { v4 as uuid } from 'uuid'
+import { useShallow } from 'zustand/shallow'
 import { InputAmount } from '../../../components/InputAmount'
 import { useCheckoutStore } from '../../../stores/useCheckoutStore'
 
 export function OrderedCoffeeList() {
-	const cart = useCheckoutStore((state) => state.cart)
-	const removeFromCart = useCheckoutStore((state) => state.removeFromCart)
-	const increaseAmount = useCheckoutStore((state) => state.increaseAmount)
-	const decreaseAmount = useCheckoutStore((state) => state.decreaseAmount)
+	const { cart, removeFromCart, increaseAmount, decreaseAmount } =
+		useCheckoutStore(
+			useShallow((state) => ({
+				cart: state.cart,
+				removeFromCart: state.removeFromCart,
+				increaseAmount: state.increaseAmount,
+				decreaseAmount: state.decreaseAmount,
+			})),
+		)
 
 	return (
 		<div className="overflow-y-auto max-h-[20.65rem] ">

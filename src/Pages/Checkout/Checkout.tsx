@@ -2,6 +2,7 @@ import { Bank, CreditCard, Money } from 'phosphor-react'
 import { type ReactNode, useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
+import { useShallow } from 'zustand/shallow'
 import { useCheckoutStore } from '../../stores/useCheckoutStore'
 import { AdressForm } from './components/AdressForm'
 import { OrderedCoffeeList } from './components/OrderedCoffeeList'
@@ -20,11 +21,14 @@ export interface PaymentMethodsType {
 }
 
 export function Checkout() {
-	const cart = useCheckoutStore((state) => state.cart)
-	const cleanCart = useCheckoutStore((state) => state.cleanCart)
-	const setAddressAndPayment = useCheckoutStore(
-		(state) => state.setAddressAndPayment,
+	const { cart, cleanCart, setAddressAndPayment } = useCheckoutStore(
+		useShallow((state) => ({
+			cart: state.cart,
+			cleanCart: state.cleanCart,
+			setAddressAndPayment: state.setAddressAndPayment,
+		})),
 	)
+
 	const navigate = useNavigate()
 	const [paymentState, setPaymentState] = useState<PaymentState>({
 		totalOrder: 'R$ 0,00',
@@ -156,7 +160,10 @@ export function Checkout() {
 						</p>
 					</div>
 
-					<button className="py-3 px-2 bg-yellow-500 font-bold text-sm leading- text-white uppercase rounded-md hover:transition-all hover:duration-200 hover:bg-yellow-700 ">
+					<button
+						type="submit"
+						className="py-3 px-2 bg-yellow-500 font-bold text-sm leading- text-white uppercase rounded-md hover:transition-all hover:duration-200 hover:bg-yellow-700 "
+					>
 						confirmar pedido
 					</button>
 				</div>

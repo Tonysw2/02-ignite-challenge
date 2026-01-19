@@ -19,11 +19,13 @@ export interface AddressType {
 	rua: string
 }
 
-interface CheckoutStore {
+type Store = {
 	cart: CoffeeOrder[]
 	address: AddressType
 	paymentMethod: string
+}
 
+type Actions = {
 	addToCart: (order: CoffeeOrder) => void
 	removeFromCart: (id: string) => void
 	increaseAmount: (id: string) => void
@@ -32,7 +34,7 @@ interface CheckoutStore {
 	setAddressAndPayment: (address: AddressType, paymentMethod: string) => void
 }
 
-export const useCheckoutStore = create<CheckoutStore>()(
+export const useCheckoutStore = create<Store & Actions>()(
 	persist(
 		(set) => ({
 			cart: [],
