@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { STORAGE_KEYS } from '../constants/storageKeys'
 
 export interface CoffeeOrder {
 	id: string
@@ -78,6 +79,11 @@ export const useCheckoutStore = create<Store & Actions>()(
 			setAddressAndPayment: (address, paymentMethod) =>
 				set({ address, paymentMethod }),
 		}),
-		{ name: 'checkout-storage' },
+		{
+			name: STORAGE_KEYS.checkoutStorage,
+			partialize: (state) => ({
+				cart: state.cart,
+			}),
+		},
 	),
 )
