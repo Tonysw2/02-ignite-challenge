@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware'
 import { STORAGE_KEYS } from '../constants/storageKeys'
 
 export interface CoffeeOrder {
@@ -36,54 +36,77 @@ type Actions = {
 }
 
 export const useCheckoutStore = create<Store & Actions>()(
-	persist(
-		(set) => ({
-			cart: [],
-			address: {
-				cep: '',
-				rua: '',
-				número: '',
-				complemento: '',
-				bairro: '',
-				cidade: '',
-				estado: '',
-			},
-			paymentMethod: '',
+	devtools(
+		persist(
+			(set) => ({
+				cart: [],
+				address: {
+					cep: '',
+					rua: '',
+					número: '',
+					complemento: '',
+					bairro: '',
+					cidade: '',
+					estado: '',
+				},
+				paymentMethod: '',
 
-			addToCart: (order) =>
-				set((state) => ({
-					cart: [...state.cart, order],
-				})),
-
-			removeFromCart: (id) =>
-				set((state) => ({
-					cart: state.cart.filter((o) => o.id !== id),
-				})),
-
-			increaseAmount: (id) =>
-				set((state) => ({
-					cart: state.cart.map((o) =>
-						o.id === id ? { ...o, amount: o.amount + 1 } : o,
+				addToCart: (order) =>
+					set(
+						(state) => ({
+							cart: [...state.cart, order],
+						}),
+						false,
+						'addToCart',
 					),
-				})),
 
-			decreaseAmount: (id) =>
-				set((state) => ({
-					cart: state.cart.map((o) =>
-						o.id === id ? { ...o, amount: Math.max(1, o.amount - 1) } : o,
+				removeFromCart: (id) =>
+					set(
+						(state) => ({
+							cart: state.cart.filter((o) => o.id !== id),
+						}),
+						false,
+						'removeFromCart',
 					),
-				})),
 
-			cleanCart: () => set({ cart: [] }),
+				increaseAmount: (id) =>
+					set(
+						(state) => ({
+							cart: state.cart.map((o) =>
+								o.id === id ? { ...o, amount: o.amount + 1 } : o,
+							),
+						}),
+						false,
+						'increaseAmount',
+					),
 
-			setAddressAndPayment: (address, paymentMethod) =>
-				set({ address, paymentMethod }),
-		}),
-		{
-			name: STORAGE_KEYS.checkoutStorage,
-			partialize: (state) => ({
-				cart: state.cart,
+				decreaseAmount: (id) =>
+					set(
+						(state) => ({
+							cart: state.cart.map((o) =>
+								o.id === id ? { ...o, amount: Math.max(1, o.amount - 1) } : o,
+							),
+						}),
+						false,
+						'decreaseAmount',
+					),
+
+				cleanCart: () => set({ cart: [] }, false, 'cleanCart'),
+
+				setAddressAndPayment: (address, paymentMethod) =>
+					set({ address, paymentMethod }, false, 'setAddressAndPayment'),
 			}),
+			{
+				name: STORAGE_KEYS.checkoutStorage,
+				partialize: (state) => ({
+					cart: state.cart,
+				}),
+			},
+		),
+		{
+			enabled: import.meta.env.DEV,
+			name: 'Checkout Store',
+			store: 'global',
 		},
 	),
 )
