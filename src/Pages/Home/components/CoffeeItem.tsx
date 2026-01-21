@@ -2,7 +2,7 @@ import { ShoppingCart } from 'phosphor-react'
 import { type FormEvent, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { InputAmount } from '../../../components/InputAmount'
-import { useCheckoutStore } from '../../../stores/useCheckoutStore'
+import { useCartStore } from '../../../stores/useCartStore'
 
 interface CoffeeDetails {
 	type: string
@@ -19,7 +19,7 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 	const [amountInput, setAmountInput] = useState(0)
-	const addToCart = useCheckoutStore((state) => state.addToCart)
+	const addToCart = useCartStore((state) => state.addToCart)
 
 	function increaseAmountInput() {
 		setAmountInput((prev) => prev + 1)
@@ -58,7 +58,7 @@ export function CoffeeItem({ coffeeDetails }: CoffeeItemProps) {
 			key={coffeeDetails.id}
 		>
 			<img
-				className="w-[120px] h-[120px] -mt-12 mb-3"
+				className="w-30 h-30 -mt-12 mb-3"
 				src={`${coffeeDetails.type}.png`}
 				alt=""
 			/>

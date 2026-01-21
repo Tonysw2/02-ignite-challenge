@@ -1,10 +1,25 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useLocation } from 'react-router'
 import DeliveryImage from '../../assets/delivery.svg'
-import { useCheckoutStore } from '../../stores/useCheckoutStore'
+
+interface AddressType {
+	bairro: string
+	cep: string
+	cidade: string
+	complemento?: string
+	estado: string
+	número: string
+	rua: string
+}
+
+interface LocationState {
+	address: AddressType
+	paymentMethod: string
+}
 
 export function Success() {
-	const address = useCheckoutStore((state) => state.address)
-	const paymentMethod = useCheckoutStore((state) => state.paymentMethod)
+	const location = useLocation()
+	const { address, paymentMethod } = location.state as LocationState
 
 	return (
 		<section className=" max-w-280 my-0 mx-auto">

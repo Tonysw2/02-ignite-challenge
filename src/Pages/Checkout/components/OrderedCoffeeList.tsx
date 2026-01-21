@@ -2,11 +2,11 @@ import { Trash } from 'phosphor-react'
 import { v4 as uuid } from 'uuid'
 import { useShallow } from 'zustand/shallow'
 import { InputAmount } from '../../../components/InputAmount'
-import { useCheckoutStore } from '../../../stores/useCheckoutStore'
+import { useCartStore } from '../../../stores/useCartStore'
 
 export function OrderedCoffeeList() {
 	const { cart, removeFromCart, increaseAmount, decreaseAmount } =
-		useCheckoutStore(
+		useCartStore(
 			useShallow((state) => ({
 				cart: state.cart,
 				removeFromCart: state.removeFromCart,

@@ -1,10 +1,10 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Link } from 'react-router'
 import Logo from '../assets/logo.svg'
-import { useCheckoutStore } from '../stores/useCheckoutStore'
+import { useCartStore } from '../stores/useCartStore'
 
 export function Header() {
-	const cartLength = useCheckoutStore((state) => state.cart.length)
+	const cartLength = useCartStore((state) => state.cart.length)
 
 	return (
 		<header className="flex items-center justify-between my-0 mx-auto max-w-280 py-8">

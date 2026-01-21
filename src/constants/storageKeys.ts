@@ -1,3 +1,3 @@
 export const STORAGE_KEYS = {
-	checkoutStorage: '@coffee-delivery:checkout-storage',
+	cartStorage: '@coffee-delivery:cart-storage',
 } as const

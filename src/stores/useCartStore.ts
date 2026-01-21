@@ -10,20 +10,8 @@ export interface CoffeeOrder {
 	amount: number
 }
 
-export interface AddressType {
-	bairro: string
-	cep: string
-	cidade: string
-	complemento?: string
-	estado: string
-	número: string
-	rua: string
-}
-
 type Store = {
 	cart: CoffeeOrder[]
-	address: AddressType
-	paymentMethod: string
 }
 
 type Actions = {
@@ -32,24 +20,13 @@ type Actions = {
 	increaseAmount: (id: string) => void
 	decreaseAmount: (id: string) => void
 	cleanCart: () => void
-	setAddressAndPayment: (address: AddressType, paymentMethod: string) => void
 }
 
-export const useCheckoutStore = create<Store & Actions>()(
+export const useCartStore = create<Store & Actions>()(
 	devtools(
 		persist(
 			(set) => ({
 				cart: [],
-				address: {
-					cep: '',
-					rua: '',
-					número: '',
-					complemento: '',
-					bairro: '',
-					cidade: '',
-					estado: '',
-				},
-				paymentMethod: '',
 
 				addToCart: (order) =>
 					set(
@@ -92,20 +69,14 @@ export const useCheckoutStore = create<Store & Actions>()(
 					),
 
 				cleanCart: () => set({ cart: [] }, false, 'cleanCart'),
-
-				setAddressAndPayment: (address, paymentMethod) =>
-					set({ address, paymentMethod }, false, 'setAddressAndPayment'),
 			}),
 			{
-				name: STORAGE_KEYS.checkoutStorage,
-				partialize: (state) => ({
-					cart: state.cart,
-				}),
+				name: STORAGE_KEYS.cartStorage,
 			},
 		),
 		{
 			enabled: import.meta.env.DEV,
-			name: 'Checkout Store',
+			name: 'Cart Store',
 			store: 'global',
 		},
 	),

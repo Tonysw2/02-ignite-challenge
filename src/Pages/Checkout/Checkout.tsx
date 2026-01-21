@@ -4,7 +4,7 @@ import { type ReactNode, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { useShallow } from 'zustand/shallow'
-import { useCheckoutStore } from '../../stores/useCheckoutStore'
+import { useCartStore } from '../../stores/useCartStore'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { type CheckoutFormData, checkoutFormSchema } from './checkoutFormSchema'
 import { AddressForm } from './components/AddressForm'
@@ -38,11 +38,10 @@ export const PAYMENT_METHODS: PaymentMethodType[] = [
 export function Checkout() {
 	const navigate = useNavigate()
 
-	const { cart, cleanCart, setAddressAndPayment } = useCheckoutStore(
+	const { cart, cleanCart } = useCartStore(
 		useShallow((state) => ({
 			cart: state.cart,
 			cleanCart: state.cleanCart,
-			setAddressAndPayment: state.setAddressAndPayment,
 		})),
 	)
 
@@ -76,9 +75,8 @@ export function Checkout() {
 
 	const handleSubmit = form.handleSubmit((data) => {
 		const { paymentMethod, ...address } = data
-		setAddressAndPayment(address, paymentMethod)
 		cleanCart()
-		navigate('/Success')
+		navigate('/Success', { state: { address, paymentMethod } })
 	})
 
 	return (
